@@ -2,3 +2,33 @@
 	margin: 0;
 	padding: 0;
 }
+
+.container{
+	width: 100%;
+	height: 100%;	
+	background-color: white;
+}
+
+#Title{
+	background-color: blue;
+	color: white;
+	margin-left: 35%;
+	margin-right: 35%;
+	text-align: center;
+}
+
+#Map{
+	background-color: red;
+}
+
+#Search{
+	background-color: green;
+}
+
+#Info{
+	background-color: yellow;
+}
+
+#Trending{
+	background-color: black;
+}
