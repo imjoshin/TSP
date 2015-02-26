@@ -1,6 +1,7 @@
 from tweepy.streaming import StreamListener
 from tweepy import Stream
-import tweepy, time, settings, termios, signal, struct, fcntl, sys, readline, os, httplib, urllib, urllib2, json, subprocess
+from pymongo import MongoClient
+import tweepy, datetime, time, settings, termios, signal, struct, fcntl, sys, readline, os, httplib, urllib, urllib2, json, subprocess
 
 
 
@@ -17,11 +18,8 @@ class TweetListener(StreamListener):
 			blank_current_readline()
 			blank_current_readline()
 
-			print 'Tweet: \033[4;22;37m%s\033[0m' % (status.text.encode('utf-8'),)
-			print 'Tweet Author: \033[22;32m@%s\033[0m' % (status.user.screen_name,)
-			print_tweet_info(status)
 			parse_tweet(status)
-			print '\n\n'
+			print '\n'
 
 			global count
 			count += 1
@@ -54,28 +52,40 @@ def debug_print(text):
 	if settings.debug:
 		print "\033[0m\033[22;36m" + text.encode('utf-8') + '\033[0m'
 
-def print_tweet_info(status):
-	print 'Tweet ID: \033[22;33m%s\033[0m' % (str(status.id),)
-	print 'Tweet Geo: \033[22;34m%s\033[0m' % (str(status.geo),)
-
-	url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=%s,%s" % (status.geo['coordinates'][0], status.geo['coordinates'][1])
-	response = urllib2.urlopen(url)
-	jsongeocode = response.read()
-	location = json.loads(jsongeocode)
-	
-	if(len(location['results']) > 0):
-		print 'Tweet Location: \033[22;36m%s\033[0m' % (location['results'][0]['formatted_address'].encode('utf-8').strip(),)
-
-
 def parse_tweet(status):
-	proc = subprocess.Popen(["curl", "-d", "text='%s'" % status.text.encode('utf-8'), "http://text-processing.com/api/sentiment/"], stderr = subprocess.PIPE,stdout = subprocess.PIPE)
-	mood = json.loads(proc.stdout.read())
-	if mood['label'] == 'pos':
-		print 'Tweet Mood: \033[7;22;32mPositive\033[0m'
-	elif mood['label'] == 'neutral':
-		print 'Tweet Mood: \033[7;22;33mNeutral\033[0m'
-	else:
-		print 'Tweet Mood: \033[7;22;31mNegative\033[0m'
+
+	text = status.text.encode('utf-8')
+	author = status.user.screen_name
+	tweetID = status.id
+	location = "%s,%s" % (str(status.geo['coordinates'][0]), str(status.geo['coordinates'][1]))
+	timestamp = status.created_at - datetime.timedelta(hours=5);
+
+	hashtags = ""
+
+	for hashtag in status.entities['hashtags']:
+		hashtags += hashtag['text'] + ","
+
+	rating = 5;
+
+	#post = {"timestamp": timestamp, "hashtags": hashtags, "location": location, "rating": rating}
+	post = {"id": tweetID, "author": author, "text": text, "timestamp": timestamp, "hashtags": hashtags, "location": location, "rating": rating}
+	tweets.insert(post)
+
+	print 'Tweet: \033[4;22;37m%s\033[0m' % (text)
+	print 'Author: \033[22;32m@%s\033[0m' % (author)
+	print 'ID: \033[22;33m%s\033[0m' % (tweetID)
+	print 'Location: \033[22;34m%s\033[0m' % (location)
+	print 'Timestamp: \033[22;31m%s\033[0m' % (timestamp)
+	print 'Hashtags: \033[22;35m%s\033[0m' % (hashtags)
+
+	#proc = subprocess.Popen(["curl", "-d", "text='%s'" % status.text.encode('utf-8'), "http://text-processing.com/api/sentiment/"], stderr = subprocess.PIPE,stdout = subprocess.PIPE)
+	#mood = json.loads(proc.stdout.read())
+	#if mood['label'] == 'pos':
+	#	print 'Tweet Mood: \033[7;22;32mPositive\033[0m'
+	#elif mood['label'] == 'neutral':
+	#	print 'Tweet Mood: \033[7;22;33mNeutral\033[0m'
+	#else:
+	#	print 'Tweet Mood: \033[7;22;31mNegative\033[0m'
 
 
 # Reply to the user, if reply=True in the config file
@@ -139,6 +149,11 @@ for i in range(3, 0, -1):
 	blank_current_readline()
 
 signal.signal(signal.SIGINT, interruptHandler)
+
+#setup database connection
+client = MongoClient()
+db = client.moodar
+tweets = db.tweets
 
 #count of tweets
 count = 0

@@ -10,4 +10,4 @@ debug = True
 # Should replies be sent to tweets?
 reply = False
 
-search=''
+search='a'
