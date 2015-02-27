@@ -36,6 +36,7 @@ def index():
                                     
                             <div id="Info">
                                     <h1>Info</h1>
+                                    %s
                             </div>
                             
                             
@@ -44,5 +45,7 @@ def index():
             </body>
     </html>
     """
-
-   return s 
+   
+   t = "<h1>TEST</h1>"
+   
+   return s % t
