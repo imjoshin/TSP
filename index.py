@@ -1,5 +1,6 @@
 from cgi import escape
 from urllib import unquote
+import json
 from urllib2 import Request, urlopen, URLError
 
 # The Publisher passes the Request object to the function
@@ -46,7 +47,16 @@ def index():
             </body>
     </html>
     """
+	
+   request = Request('https://api.twitter.com/1.1/trends/1')
    
+   try:
+	response = urlopen(request)
+	data=json.load(response)
+	print data
+   except URLError, e:
+	print 'Error', e
+
    t = "<h1>TEST TWO</h1>"
    
    return s % t
