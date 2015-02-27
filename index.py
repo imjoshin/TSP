@@ -1,5 +1,6 @@
 from cgi import escape
 from urllib import unquote
+from urllib2 import Request, urlopen, URLError
 
 # The Publisher passes the Request object to the function
 def index():
@@ -8,7 +9,7 @@ def index():
             <head>
                     <title>Mood Radar</title>
                     <link rel="shortcut icon" type="image/x-icon" href="ico.png" />
-                    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+                    <link rel="stylesheet" type="text/css" href="css/style.css">
             
                     <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.js"></script>
                     <script type="text/javascript" src="../cgi-bin/js/script.js"></script>
@@ -46,6 +47,6 @@ def index():
     </html>
     """
    
-   t = "<h1>TEST</h1>"
+   t = "<h1>TEST TWO</h1>"
    
    return s % t
