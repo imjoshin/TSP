@@ -43,6 +43,7 @@ def index():
                     
                     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=visualization"></script>
                     <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.js"></script>
+                    <script type="text/javascript" src="/cgi-bin/js/script.js"></script>
                 
                     
             </head>
