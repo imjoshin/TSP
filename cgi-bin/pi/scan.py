@@ -1,6 +1,7 @@
 from tweepy.streaming import StreamListener
 from tweepy import Stream
 from pymongo import MongoClient
+from textblob import TextBlob
 import tweepy, datetime, time, settings, termios, signal, struct, fcntl, sys, readline, os, httplib, urllib, urllib2, json, subprocess
 
 
@@ -55,7 +56,7 @@ def debug_print(text):
 def parse_tweet(status):
 
 	text = status.text.encode('utf-8')
-	author = status.user.screen_name
+	author = status.user.screen_name.encode('utf-8')
 	tweetID = status.id
 	location = "%s,%s" % (str(status.geo['coordinates'][0]), str(status.geo['coordinates'][1]))
 	timestamp = status.created_at - datetime.timedelta(hours=5);
@@ -63,9 +64,11 @@ def parse_tweet(status):
 	hashtags = ""
 
 	for hashtag in status.entities['hashtags']:
-		hashtags += hashtag['text'] + ","
+		hashtags += hashtag['text'].encode('utf-8') + ","
 
-	rating = 5;
+	tb = TextBlob(status.text)
+	polarity = tb.sentiment.polarity
+	rating = (polarity + 1) * 50
 
 	#post = {"timestamp": timestamp, "hashtags": hashtags, "location": location, "rating": rating}
 	post = {"id": tweetID, "author": author, "text": text, "timestamp": timestamp, "hashtags": hashtags, "location": location, "rating": rating}
@@ -77,15 +80,7 @@ def parse_tweet(status):
 	print 'Location: \033[22;34m%s\033[0m' % (location)
 	print 'Timestamp: \033[22;31m%s\033[0m' % (timestamp)
 	print 'Hashtags: \033[22;35m%s\033[0m' % (hashtags)
-
-	#proc = subprocess.Popen(["curl", "-d", "text='%s'" % status.text.encode('utf-8'), "http://text-processing.com/api/sentiment/"], stderr = subprocess.PIPE,stdout = subprocess.PIPE)
-	#mood = json.loads(proc.stdout.read())
-	#if mood['label'] == 'pos':
-	#	print 'Tweet Mood: \033[7;22;32mPositive\033[0m'
-	#elif mood['label'] == 'neutral':
-	#	print 'Tweet Mood: \033[7;22;33mNeutral\033[0m'
-	#else:
-	#	print 'Tweet Mood: \033[7;22;31mNegative\033[0m'
+	print 'Rating: \033[7m%d\033[0m' % (rating)
 
 
 # Reply to the user, if reply=True in the config file
