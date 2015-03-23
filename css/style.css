@@ -14,20 +14,45 @@ div {
 }
 
 #Title{
-	background-color: blue;
+	background-color: #3366FF;
+	font-family: "Times New Roman";
+	z-index: 1;
+	border-bottom: thick double black;
+	position: fixed;
+	width: 100%;
 	color: white;
-	margin-left: 35%;
-	margin-right: 35%;
 	text-align: center;
-	height: 10%;
+	height: 12%;
+}
+
+
+a {
+	color: black;
+	text-decoration: none;
+}
+
+
+#Trending{
+	padding-top: 15px;
+	padding-left: 10px;
+	z-index:1;
+	border-right: thick double black;
+	font-family: "Arial Black", Gadget, sans-serif;
+	margin-top: 100px;
+	background-color: #b3d1ff;
+	color: black;
+	height: 90%;
+	width: 20%;
+	float: left;
 }
 
 #Map{
-	background-color: red;
+	background-color: #f0ede5;
 	color:white;
 	text-align: center;
-	height: 50%;
-	width: 100%
+	height: 100%;
+	margin-left:20%;
+	width:  80%
 }
 
 #Search{
@@ -40,16 +65,11 @@ div {
 }
 
 #Info{
-	background-color: yellow;
-	width: 40%;
-	height: 20%;
-	float: left;
-}
-
-#Trending{
-	background-color: black;
-	color: white;
-	height: 40%;
-	width: 60%;
+	 border: 2px solid;
+    border-radius: 25px;
+	font-family: fantasy;
+	background-color: #3366FF;
+	width: 100%;
+	height: 500px;
 	float: left;
 }

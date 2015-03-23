@@ -28,9 +28,9 @@ def trendy():
 	fiveMin = timedelta(minutes = 5)
 	
 	#fix if state
-	if( (testThis + fiveMin ) <  datetime.datetime.now()):
+	if( (testThis +fiveMin ) <  datetime.datetime.now()):
 		try:
-			mat=api.trends_place(1)
+			mat=api.trends_place(23424977)
 			allOfThem=""
 			names_set = set([trend['name']
 					for trend in mat[0]['trends']])
@@ -38,11 +38,12 @@ def trendy():
 				i+=1
 				hashtag = tw
 				if "#" in tw:
-					hashtag = "<a class='trend' href='https://twitter.com/hashtag/%s?src=tren'>%s</a>" % (tw.replace("#", ""), tw) 
+					hashtag = "<a class='trend' href='https://twitter.com/hashtag/%s?src=tren'>%s</a>" % (tw.replace("#", ""), tw.encode('utf-8')) 
 				else:
-					hashtag = "<a class='trend' href='https://twitter.com/search?q=%s&src=tren'>%s</a>" % (tw.replace(" ", "%20"), tw)
-				allOfThem += " %i: %s<br>"  % (i, hashtag)
+					hashtag = "<a class='trend' href='https://twitter.com/search?q=%s&src=tren'>%s</a>" % (tw.replace(" ", "%20"), tw.encode('utf-8') )
+				allOfThem += " %i: %s<br><br><br>"  % (i, hashtag)
 			allOfThem = allOfThem.encode('ascii','ignore')
+			
 			z.seek(0)
 			z.truncate(0)	
 			z.write(allOfThem)

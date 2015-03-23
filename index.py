@@ -37,27 +37,26 @@ def index():
                             
                             <div id="Title">
                                     <h1>MOOD RADAR!</h1>
-                            </div>
-                            
-                            <div id="Map">
-                              <script src="cgi-bin/js/script.js">
-                              </script>
-                            </div>
-                            
-                            <div id="Trending">
-                                   
-				 <h1>Trending</h1>
-                        	""" + info + """ 
-			    </div>
-                            
-                            <div id="Search">
-                                    <h1>Search</h1>
-                                    <form >
+				    <form action = "http://i.imgur.com/13SWnPa.gif" method="get">
                                        State: <input type="text" name="fname"><br>
                                        Mood: <input type="text" name="lname"><br>
                                        <input type="submit" value="Submit">
                                     </form>
                             </div>
+                              
+                            <div id="Trending">
+                                   
+				 <h1>Trending</h1><br><br>
+                        	""" + info + """ 
+			    </div>
+			    
+                            <div id="Map">
+                              <script src="cgi-bin/js/script.js">
+                              </script>
+                            </div>
+                          
+                            
+                         
                                     
                             <div id="Info">
                                     <h1>Info</h1>
