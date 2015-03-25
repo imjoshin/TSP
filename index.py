@@ -36,11 +36,10 @@ def index():
                     <div id="Main" class="container">
                             
                             <div id="Title">
-                                    <h1>MOOD RADAR!</h1>
+                                    <h1> <p align="center"> &nbsp; MOOD RADAR!</p></h1>
 				    <form action = "http://i.imgur.com/13SWnPa.gif" method="get">
-                                       State: <input type="text" name="fname"><br>
-                                       Mood: <input type="text" name="lname"><br>
-                                       <input type="submit" value="Submit">
+                                        <input type="text" placeholder="Enter a state..." name="fname" id = "inBox"><br>
+                                       <input type="submit" value="Submit" id="submit-button">
                                     </form>
                             </div>
                               

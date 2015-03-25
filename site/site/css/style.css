@@ -1,0 +1,55 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.container{
+	width: 100%;
+	height: 100%;	
+	background-color: white;
+}
+
+div {
+	
+}
+
+#Title{
+	background-color: blue;
+	color: white;
+	margin-left: 35%;
+	margin-right: 35%;
+	text-align: center;
+	height: 10%;
+}
+
+#Map{
+	background-color: red;
+	color:white;
+	text-align: center;
+	height: 50%;
+	width: 100%
+}
+
+#Search{
+	background-color: green;
+	color: blue;
+	width: 40%;
+	height: 20%;
+	float: left;
+
+}
+
+#Info{
+	background-color: yellow;
+	width: 40%;
+	height: 20%;
+	float: left;
+}
+
+#Trending{
+	background-color: cyan;
+	color: white;
+	height: 40%;
+	width: 60%;
+	float: left;
+}
