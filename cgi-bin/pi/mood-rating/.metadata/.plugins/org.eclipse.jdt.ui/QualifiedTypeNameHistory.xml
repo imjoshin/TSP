@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.util.Properties"/>
+<fullyQualifiedTypeName name="edu.stanford.nlp.pipeline.StanfordCoreNLP"/>
+<fullyQualifiedTypeName name="edu.stanford.nlp.time.TimeExpression.Annotation"/>
+<fullyQualifiedTypeName name="java.lang.annotation.Annotation"/>
+<fullyQualifiedTypeName name="edu.stanford.nlp.pipeline.Annotation"/>
+<fullyQualifiedTypeName name="edu.stanford.nlp.util.CoreMap"/>
+<fullyQualifiedTypeName name="edu.stanford.nlp.trees.Tree"/>
+<fullyQualifiedTypeName name="edu.stanford.nlp.ling.CoreAnnotations"/>
+<fullyQualifiedTypeName name="edu.stanford.nlp.sentiment.SentimentCoreAnnotations"/>
+<fullyQualifiedTypeName name="edu.stanford.nlp.neural.rnn.RNNCoreAnnotations"/>
+<fullyQualifiedTypeName name="edu.stanford.nlp.ling.CoreAnnotations.SentencesAnnotation"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.io.PrintStream"/>
+<fullyQualifiedTypeName name="java.io.FileOutputStream"/>
+</qualifiedTypeNameHistroy>

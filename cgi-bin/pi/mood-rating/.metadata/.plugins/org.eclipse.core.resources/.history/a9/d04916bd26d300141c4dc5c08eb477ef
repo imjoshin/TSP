@@ -1,0 +1,79 @@
+import java.util.List;
+import java.util.Properties;
+
+import edu.stanford.nlp.ling.CoreAnnotations;
+import edu.stanford.nlp.ling.CoreAnnotations.SentencesAnnotation;
+import edu.stanford.nlp.neural.rnn.RNNCoreAnnotations;
+import edu.stanford.nlp.pipeline.Annotation;
+import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+import edu.stanford.nlp.sentiment.SentimentCoreAnnotations;
+import edu.stanford.nlp.trees.Tree;
+import edu.stanford.nlp.util.CoreMap;
+
+import org.ejml.*;
+
+
+public class Mood {
+
+	public static void main(String[] args) {
+		/*
+        Properties props = new Properties();
+        props.setProperty("annotators", "tokenize, ssplit, parse, sentiment");
+        StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+        
+        String line = "EVERYTHING IS GREAT!";
+        int mainSentiment = 0;
+        if (line != null && line.length() > 0) {
+            int longest = 0;
+            Annotation annotation = pipeline.process(line);
+            for (CoreMap sentence : annotation.get(CoreAnnotations.SentencesAnnotation.class)) {
+                Tree tree = sentence.get(SentimentCoreAnnotations.AnnotatedTree.class);
+                int sentiment = RNNCoreAnnotations.getPredictedClass(tree);
+                String partText = sentence.toString();
+                if (partText.length() > longest) {
+                    mainSentiment = sentiment;
+                    longest = partText.length();
+                }
+ 
+            }
+        }
+        
+        System.out.println("Main: " + mainSentiment);
+        */
+		
+		Properties props = new Properties();
+		props.setProperty("annotators", "tokenize, ssplit, parse, sentiment");
+		StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+
+		// read some text in the text variable
+		String text = "I am content."; // Add your text here!
+
+		// create an empty Annotation just with the given text
+		Annotation document = new Annotation(text);
+
+		// run all Annotators on this text
+		pipeline.annotate(document);
+
+		// these are all the sentences in this document
+		// a CoreMap is essentially a Map that uses class objects as keys and has values with custom types
+		List<CoreMap> sentences = document.get(SentencesAnnotation.class);
+
+		int totalSum = 0;
+		for (CoreMap sentence : sentences) {
+		  String s = sentence.get(SentimentCoreAnnotations.ClassName.class);
+		  System.out.println(s);
+		  if(s.compareTo("Very positive") == 0)
+			  totalSum += 5;
+		  else if(s.compareTo("Positive") == 0)
+			  totalSum += 4;
+		  else if(s.compareTo("Neutral") == 0)
+			  totalSum += 3;
+		  else if(s.compareTo("Negative") == 0)
+			  totalSum += 2;
+		  else
+			  totalSum += 1;
+		}
+		System.out.println("Average: " + (int)(totalSum / sentences.size()));
+	}
+
+}
