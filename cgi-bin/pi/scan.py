@@ -66,9 +66,10 @@ def parse_tweet(status):
 	for hashtag in status.entities['hashtags']:
 		hashtags += hashtag['text'].encode('utf-8') + ","
 
-	tb = TextBlob(status.text)
-	polarity = tb.sentiment.polarity
-	rating = (polarity + 1) * 50
+	#tb = TextBlob(status.text)
+	#polarity = tb.sentiment.polarity
+	#rating = (polarity + 1) * 50
+	rating = subprocess.Popen(['./getMood', text], stdout=subprocess.PIPE).stdout.read()
 
 	#post = {"timestamp": timestamp, "hashtags": hashtags, "location": location, "rating": rating}
 	post = {"id": tweetID, "author": author, "text": text, "timestamp": timestamp, "hashtags": hashtags, "location": location, "rating": rating}
