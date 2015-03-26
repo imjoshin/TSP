@@ -11,7 +11,7 @@ var uri = "mongodb://127.0.0.1/moodar",
 var server = http.createServer(requestHandler);
 function requestHandler(request, response) {
     sys.puts("got request");
-    response.writeHead(200, {"Content-Type": "text/JSON"});
+    response.writeHead(200, {"Content-Type": "text/text"});
     db.tweets.find().toArray(function(err, records) {
 	if(err) {
             sys.puts("There was an error querying the database");
