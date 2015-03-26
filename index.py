@@ -59,7 +59,7 @@ def index():
                                     
                             <div id="Info">
                                     <h1>Info</h1>
-                                   
+                                    <p>Moodar created by Joshua Johnson, Rory Straubel, Brian Ferus, Riley Hirn, and Brian Keith for Team Software Project 2015.</p>
                             </div>
                             
                             

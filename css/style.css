@@ -35,7 +35,7 @@ div {
 }
 
 #Title{
-	background-color: #3366FF;
+	background-image: url("http://www.pptbackgrounds.net/uploads/cubes-squares-on-blue-background-backgrounds-wallpapers.jpg");
 	font-family: 'Quicksand';
 	border-bottom: thick double black;
 	text-align:center;
@@ -54,6 +54,7 @@ a {
 
 
 #Trending{
+	
 	padding-top: 15px;
 	padding-left: 10px;
 	border-right: thick double black;
@@ -117,6 +118,8 @@ a {
 	font-family: "Arial Black", Gadget, sans-serif;
 	background-color: #3366FF;
 	width: 100%;
+	color:white;
+	background-image: url("http://www.pptbackgrounds.net/uploads/cubes-squares-on-blue-background-backgrounds-wallpapers.jpg");
 	height: 8%;
 	float: left;
 }

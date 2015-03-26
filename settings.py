@@ -38,9 +38,9 @@ def trendy():
 				i+=1
 				hashtag = tw
 				if "#" in tw:
-					hashtag = "<a class='trend' href='https://twitter.com/hashtag/%s?src=tren'>%s</a>" % (tw.replace("#", ""), tw.encode('utf-8')) 
+					hashtag = "<a target='_blank' class='trend' href='https://twitter.com/hashtag/%s?src=tren'>%s</a>" % (tw.replace("#", ""), tw.encode('utf-8')) 
 				else:
-					hashtag = "<a class='trend' href='https://twitter.com/search?q=%s&src=tren'>%s</a>" % (tw.replace(" ", "%20"), tw.encode('utf-8') )
+					hashtag = "<a target='_blank' class='trend' href='https://twitter.com/search?q=%s&src=tren'>%s</a>" % (tw.replace(" ", "%20"), tw.encode('utf-8') )
 				allOfThem += " %i: %s<br><br><br>"  % (i, hashtag)
 			allOfThem = allOfThem.encode('ascii','ignore')
 			
