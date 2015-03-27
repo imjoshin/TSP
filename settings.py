@@ -28,7 +28,7 @@ def trendy():
 	fiveMin = timedelta(minutes = 5)
 	
 	#fix if state
-	if( (testThis +fiveMin ) <  datetime.datetime.now()):
+	if( (fiveMin==0)):
 		try:
 			mat=api.trends_place(23424977)
 			allOfThem=""

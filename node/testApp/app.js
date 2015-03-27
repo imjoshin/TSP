@@ -22,7 +22,7 @@ app.get('/', function (req, res) {
 		sys.puts("no error from db");
 		//sys.puts(records[0]["location"]);
 		var response = "";
-		for(var index = 0; index < 2000; index++) {
+		for(var index = 0; index < records.length; index++) {
 			//sys.puts("rating: ");
 			//sys.puts(records[index]["location"]);
 			response += (records[index]["location"] + "|");

@@ -58,8 +58,8 @@ def index():
                          
                                     
                             <div id="Info">
-                                    <h1>Info</h1>
-                                    <p>Moodar created by Joshua Johnson, Rory Straubel, Brian Ferus, Riley Hirn, and Brian Keith for Team Software Project 2015.</p>
+                                    <font size="1"><h1>Info:</h1></font>
+                                    <p>Moodar created by Joshua Johnson, Rory Straubel, Brian Ferus, Riley Hirn, and Brian Keith for Team Software Project 2015. </br> Moodar was created using the Stanford Natural Language Processing Group's API and Twitter's API.</p>
                             </div>
                             
                             

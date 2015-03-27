@@ -36,12 +36,13 @@ div {
 
 #Title{
 	background-image: url("http://www.pptbackgrounds.net/uploads/cubes-squares-on-blue-background-backgrounds-wallpapers.jpg");
-	font-family: 'Quicksand';
+
 	border-bottom: thick double black;
 	text-align:center;
 	alignment-adjust: center;
 	width: 100%;
 	color: white;
+		font-family: Impact, Charcoal, sans-serif;
 	text-align: center;
 	height: 12%;
 }
@@ -58,7 +59,7 @@ a {
 	padding-top: 15px;
 	padding-left: 10px;
 	border-right: thick double black;
-	font-family: 'quicksand';
+	font-family: Impact, Charcoal, sans-serif;
 	background-color: #b3d1ff;
 	color: black;
 	height: 77%;
@@ -80,6 +81,7 @@ a {
 	background-color: green;
 	color: blue;
 	width: 40%;
+	font-family: Impact, Charcoal, sans-serif;
 	height: 20%;
 	float: left;
 
@@ -89,7 +91,7 @@ a {
 	text-align:center;
 	alignment-adjust: center;
 	text-align: center;
-	font-family: 'volkswagenregular';
+	font-family: Impact, Charcoal, sans-serif;
 	background-color: #f0ede5;
 	border-top-left-radius:6px;
 	border-top-right-radius:6px;
@@ -114,8 +116,9 @@ a {
 }
 
 #Info{
+	padding-left: 10px;
 	border-top: thick double black;
-	font-family: "Arial Black", Gadget, sans-serif;
+	font-family: Impact, Charcoal, sans-serif;
 	background-color: #3366FF;
 	width: 100%;
 	color:white;

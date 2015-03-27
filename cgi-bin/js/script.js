@@ -1,7 +1,4 @@
 var pointArray,heatmap;
-var response = httpGet("http://moodar.me:8080");
-
-
 
 function initialize() {
 
@@ -10,7 +7,12 @@ function initialize() {
                 zoom: 4
         };
 
-	console.log("Got Points");	
+        var map = new google.maps.Map(document.getElementById('Map'), mapOptions);
+
+
+	var response = httpGet("http://moodar.me:8080");
+
+		
 	var locations = response.split("|");
 	var dataPoints = [];
 	
@@ -18,9 +20,8 @@ function initialize() {
 	        var intLoc = locations[i].split(",");
         	dataPoints.push(new google.maps.LatLng(parseFloat(intLoc[0]), parseFloat(intLoc[1])));
 	}
-	console.log(dataPoints.length);
 
-	var map = new google.maps.Map(document.getElementById('Map'), mapOptions);
+	map = new google.maps.Map(document.getElementById('Map'), mapOptions);
 	
   	var pointArray = new google.maps.MVCArray(dataPoints);
 
@@ -42,6 +43,5 @@ function httpGet(theUrl)
     xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", theUrl, false );
     xmlHttp.send( null );
-    console.log("response: " + xmlHttp.readyState);
     return xmlHttp.response;
 }
