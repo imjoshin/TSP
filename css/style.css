@@ -15,23 +15,19 @@ div {
 
 #inBox{
 	text-align: center;
-	font-family: 'volkswagenregular';
 	background-color: #f0ede5;
 	border-top-left-radius:6px;
 	border-top-right-radius:6px;
 	border-bottom-left-radius:6px;
 	border-bottom-right-radius:6px;
 	border: transparent;
-	margin-top: 5;
-	margin-left: 20;
-	width: 100px;
-	height: 30px;
-	font-size: 16;
+	margin-top: .1%;
+	margin-left: 2%;
+	width: 10%;
+	height: 20%;
 	clear: left;
 	transition:.5s; 
 	display:inline;
-	width: 200px;
-	height: 20px;
 }
 
 #Title{
@@ -42,28 +38,31 @@ div {
 	alignment-adjust: center;
 	width: 100%;
 	color: white;
-		font-family: Impact, Charcoal, sans-serif;
 	text-align: center;
 	height: 12%;
 }
 
 
-a {
-	color: black;
+label: {
+	color: blue;
 	text-decoration: none;
+	cursor: pointer;
+}
+
+label:hover{
+	cursor: pointer;
 }
 
 
 #Trending{
 	
-	padding-top: 15px;
-	padding-left: 10px;
 	border-right: thick double black;
-	font-family: Impact, Charcoal, sans-serif;
+	padding-left: 1%;
+	padding-top: 1%;
 	background-color: #b3d1ff;
 	color: black;
-	height: 77%;
-	width: 19%;
+	height: 75%;
+	width: 18.5%;
 	float: left;
 }
 
@@ -71,19 +70,18 @@ a {
 	background-color: #f0ede5;
 	color:white;
 	text-align: center;
-	height: 78.5%;
-	margin-left:20%;
-	margin-right: 0%;
-	width:  80%
+	height: 76.5%;
+	width:  80%;
+	float: right;
+	
 }
 
 #Search{
-	background-color: green;
+	background-color: #f0ede5;
 	color: blue;
 	width: 40%;
-	font-family: Impact, Charcoal, sans-serif;
+	alignment-adjust: center;
 	height: 20%;
-	float: left;
 
 }
 
@@ -91,18 +89,16 @@ a {
 	text-align:center;
 	alignment-adjust: center;
 	text-align: center;
-	font-family: Impact, Charcoal, sans-serif;
 	background-color: #f0ede5;
 	border-top-left-radius:6px;
 	border-top-right-radius:6px;
 	border-bottom-left-radius:6px;
 	border-bottom-right-radius:6px;
 	border: transparent;
-	margin-top: 5;
-	margin-left: 20;
-	width: 100px;
-	height: 30px;
-	font-size: 16;
+	margin-top: .5%;
+	margin-left: 1%;
+	width: 5%;
+	height: 25%;
 	clear: left;
 	transition:.5s; 
 	display:inline;
@@ -111,18 +107,21 @@ a {
 #submit-button:hover{
 	background-color: #b3d1ff;
 	color: white;
-	width:200px;
+	cursor: pointer;
 	
 }
 
+#submit-button:after{
+	cursor: wait;
+}
+
 #Info{
-	padding-left: 10px;
 	border-top: thick double black;
-	font-family: Impact, Charcoal, sans-serif;
 	background-color: #3366FF;
-	width: 100%;
+	width: 99%;
 	color:white;
+	padding-left: 1%;
 	background-image: url("http://www.pptbackgrounds.net/uploads/cubes-squares-on-blue-background-backgrounds-wallpapers.jpg");
-	height: 8%;
+	height: 9.6%;
 	float: left;
 }

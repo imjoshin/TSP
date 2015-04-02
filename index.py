@@ -1,3 +1,5 @@
+#This file creates the string for the index.html file using python 
+
 from cgi import escape
 import settings
 from urllib import unquote
@@ -37,11 +39,10 @@ def index():
                             
                             <div id="Title">
                                     <h1> <p align="center"> &nbsp; MOOD RADAR!</p></h1>
-				    <form action = "http://i.imgur.com/13SWnPa.gif" method="get">
-                                        <input type="text" placeholder="Enter a state..." name="fname" id = "inBox"><br>
+				    
+                                        <input type="text" placeholder="Search..." name="fname" id = "inBox"><br>
                                        <input type="submit" value="Submit" id="submit-button">
-                                    </form>
-                            </div>
+                             </div>
                               
                             <div id="Trending">
                                    
@@ -65,6 +66,13 @@ def index():
                             
                             
                     </div>
+		    <script>
+		    function myFunction(t){
+			console.log("test");
+			document.getElementById("inBox").value= t;
+			search();
+		    }
+		    </script>
             </body>
     </html>
     """

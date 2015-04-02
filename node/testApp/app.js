@@ -13,7 +13,8 @@ app.use(cors());
 app.get('/', function (req, res) {
 	//res.send('Hello World!')
    	sys.puts("got request");
-    	db.tweets.find().toArray(function(err, records) {
+	var search = '.*' + req.headers['search'] + '.*';
+	db.tweets.find({ 'text':new RegExp(search) }).toArray(function(err, records) {
 		if(err) {
             		sys.puts("There was an error querying the database");
             		res.send("Error");

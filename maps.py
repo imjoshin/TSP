@@ -1,3 +1,4 @@
+#This file uses our Google Auth key to access the Google Maps API
 from urllib2 import Request, urlopen, URLError
 from urllib import unquote
 import json

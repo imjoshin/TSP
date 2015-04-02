@@ -2,7 +2,7 @@ from tweepy.streaming import StreamListener
 from tweepy import Stream
 from pymongo import MongoClient
 from textblob import TextBlob
-import tweepy, datetime, time, settings, termios, signal, struct, fcntl, sys, readline, os, httplib, urllib, urllib2, json, subprocess
+import tweepy, datetime, time, settings, termios, re, signal, struct, fcntl, sys, readline, os, httplib, urllib, urllib2, json, subprocess
 
 
 
@@ -69,7 +69,8 @@ def parse_tweet(status):
 	#tb = TextBlob(status.text)
 	#polarity = tb.sentiment.polarity
 	#rating = (polarity + 1) * 50
-	rating = subprocess.Popen(['./getMood', text], stdout=subprocess.PIPE).stdout.read()
+	noNonAscii = removeNonAscii(text)
+	rating = int(subprocess.Popen(['./getMood', noNonAscii], stdout=subprocess.PIPE).stdout.read())
 
 	#post = {"timestamp": timestamp, "hashtags": hashtags, "location": location, "rating": rating}
 	post = {"id": tweetID, "author": author, "text": text, "timestamp": timestamp, "hashtags": hashtags, "location": location, "rating": rating}
@@ -111,11 +112,17 @@ def reconnect(wait):
 		listener = TweetListener()
 
 		debug_print('\nStarting stream...')#' for #%s...' % (settings.hashtag1,))
-
+		
 		stream = Stream(auth, listener)
 		print 'Now scanning...'# for #' + settings.hashtag1 + '...'
+		
+		global loc
+		
+		stream.filter(locations=loc, languages=["en"])
 
-		stream.filter(track=settings.search)
+
+def removeNonAscii(text):
+    return re.sub(r'[^\x00-\x7F]+',' ', text)
 
 def blank_current_readline():
 	# Next line said to be reasonably portable for various Unixes
@@ -169,5 +176,11 @@ stream = Stream(auth, listener)
 
 print 'Now scanning...'#' for #' + settings.hashtag1 + '...\n\n'
 
+loc = [-168.0,25.6,-52.5,71.3,-178.31,18.91,-154.81,28.4]
+       #NA                    #Hawaii
+
 #stream.filter(track=[settings.search])
-stream.filter(track=settings.search, languages=["en"]) #track=settings.search)
+try:
+	stream.filter(locations=loc, languages=["en"])
+except Exception:
+	reconnect(3)
