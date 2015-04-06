@@ -10,4 +10,5 @@ debug = True
 # Should replies be sent to tweets?
 reply = False
 
-search='a'
+#how many hours to keep tweets until they are removed
+hoursTilDelete = 16

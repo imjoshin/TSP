@@ -9,12 +9,19 @@ var mongojs = require("mongojs"),
 var uri = "mongodb://127.0.0.1/moodar",
      db = mongojs.connect(uri, ["tweets"]);
 
+
+
 app.use(cors());
 app.get('/', function (req, res) {
-	//res.send('Hello World!')
+	
    	sys.puts("got request");
-	var search = '.*' + req.headers['search'] + '.*';
-	db.tweets.find({ 'text':new RegExp(search) }).toArray(function(err, records) {
+	var field = req.headers['search'];
+	if(!field){
+		field = "";
+	}
+	var search = '.*' + field  + '.*';
+	sys.puts("Search Feild = " + req.headers['search']);
+	db.tweets.find({ 'text':new RegExp(search)}).toArray(function(err, records) {
 		if(err) {
             		sys.puts("There was an error querying the database");
             		res.send("Error");
@@ -22,12 +29,21 @@ app.get('/', function (req, res) {
         	}
 		sys.puts("no error from db");
 		//sys.puts(records[0]["location"]);
+	
+		var startIndex = parseInt(req.headers['start']);
+		var done = "false"; 
 		var response = "";
-		for(var index = 0; index < records.length; index++) {
+	        sys.puts("starting at " + startIndex + " Records Length = " + records.length); 	
+		for(var index = startIndex; index < startIndex + 10000; index++) {
 			//sys.puts("rating: ");
 			//sys.puts(records[index]["location"]);
-			response += (records[index]["location"] + "|");
+			if(index >= records.length){
+				done = "true";
+				break;
+			}
+			response += (records[index]["location"] + "," + records[index]["rating"] +  "|");
 		}
+		response = done + "|" + response;
 		sys.puts(response.length);
 		res.send(response);
 	});

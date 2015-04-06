@@ -3,6 +3,10 @@
 	padding: 0;
 }
 
+body{
+	min-width:620px;
+}
+
 .container{
 	width: 100%;
 	height: 100%;	
@@ -62,7 +66,7 @@ label:hover{
 	background-color: #b3d1ff;
 	color: black;
 	height: 75%;
-	width: 18.5%;
+	width: 18.7%;
 	float: left;
 }
 
@@ -71,7 +75,7 @@ label:hover{
 	color:white;
 	text-align: center;
 	height: 76.5%;
-	width:  80%;
+	width:  79.7%;
 	float: right;
 	
 }
@@ -114,6 +118,118 @@ label:hover{
 #submit-button:after{
 	cursor: wait;
 }
+
+.moodButton{
+	text-align:center;
+	alignment-adjust: center;
+	text-align: center;
+	border-radius: 6px;
+	border: transparent;
+	margin-top: .5%;
+	margin-left: 1%;
+	width: 100px;
+	height: 25px;
+	clear: left;
+	transition: .5s;
+	display:inline;
+}
+
+.moodButton-off{
+	text-align:center;
+	background-color:white;
+	alignment-adjust: center;
+        text-align: center;
+        border-radius: 6px;
+        border: transparent;
+        margin-top: .5%;
+        margin-left: 1%;
+        width: 100px;
+        height: 25px;
+        clear: left;
+        transition: .5s;
+        display:inline;
+}
+#neutral{
+        //background-color: yellow;
+}
+
+#neutral:hover{
+        background-color: #f0ede5;
+        color: black;
+        cursor: pointer;
+
+}
+
+#neutral:after{
+        cursor: wait;
+}
+
+
+#negative{
+        //background-color: orange;
+}
+
+#negative:hover{
+        background-color: #f0ede5;
+        color: black;
+        cursor: pointer;
+
+}
+
+#negative:after{
+        cursor: wait;
+}
+
+
+
+#positive{
+        //background-color: #1DCF32;
+}
+
+#positive:hover{
+        background-color: #f0ede5;
+        color: black;
+        cursor: pointer;
+
+}
+
+#positive:after{
+        cursor: wait;
+}
+
+
+#veryNegative{
+        //background-color: #E83333;
+}
+
+#veryNegative:hover{
+        background-color: #f0ede5;
+        color: black;
+        cursor: pointer;
+
+}
+
+#veryNegative:after{
+        cursor: wait;
+}
+
+#veryPositive{
+        //background-color: #3E4BFA;
+}
+
+#veryPositive:hover{
+        background-color: #f0ede5;
+        color: black;
+        cursor: pointer;
+
+}
+
+#veryPositive:after{
+        cursor: wait;
+}
+
+
+
 
 #Info{
 	border-top: thick double black;

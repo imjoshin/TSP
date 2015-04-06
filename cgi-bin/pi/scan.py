@@ -14,19 +14,21 @@ class TweetListener(StreamListener):
 		
 
 		if str(status.geo) != 'None':
+			global total
+			total += 1
+			if total % 15 == 0:
+				blank_current_readline()
+				blank_current_readline()
+				blank_current_readline()
 
-			blank_current_readline()
-			blank_current_readline()
-			blank_current_readline()
-
-			parse_tweet(status)
-			print '\n'
-
-			global count
-			count += 1
-			print "\033[32m-----------------------\033[0m"
-			print "\033[7mTweets scanned: %d\033[0m" % (count,)
-			print "\033[32m-----------------------\033[0m"		
+				parse_tweet(status)
+				print '\n'
+	
+				global count
+				count += 1
+				print "\033[32m-----------------------\033[0m"
+				print "\033[7mTweets scanned: %d\033[0m" % (count,)
+				print "\033[32m-----------------------\033[0m"		
 
 		return True
 
@@ -66,11 +68,11 @@ def parse_tweet(status):
 	for hashtag in status.entities['hashtags']:
 		hashtags += hashtag['text'].encode('utf-8') + ","
 
-	#tb = TextBlob(status.text)
-	#polarity = tb.sentiment.polarity
-	#rating = (polarity + 1) * 50
-	noNonAscii = removeNonAscii(text)
-	rating = int(subprocess.Popen(['./getMood', noNonAscii], stdout=subprocess.PIPE).stdout.read())
+	tb = TextBlob(status.text)
+	polarity = tb.sentiment.polarity
+	rating = (polarity + 1) * 50
+	#noNonAscii = removeNonAscii(text)
+	#rating = int(subprocess.Popen(['./getMood', noNonAscii], stdout=subprocess.PIPE).stdout.read())
 
 	#post = {"timestamp": timestamp, "hashtags": hashtags, "location": location, "rating": rating}
 	post = {"id": tweetID, "author": author, "text": text, "timestamp": timestamp, "hashtags": hashtags, "location": location, "rating": rating}
@@ -160,6 +162,7 @@ tweets = db.tweets
 
 #count of tweets
 count = 0
+total = 0
 
 #twitter authorization
 auth = tweepy.OAuthHandler(settings.cKey, settings.cSecret)

@@ -1,0 +1,13 @@
+
+events.js:72
+        throw er; // Unhandled 'error' event
+              ^
+Error: failed to connect to [127.0.0.1:27017]
+    at null.<anonymous> (/var/www/html/TSP/node/node_modules/mongojs/node_modules/mongodb/lib/mongodb/connection/server.js:555:74)
+    at emit (events.js:106:17)
+    at null.<anonymous> (/var/www/html/TSP/node/node_modules/mongojs/node_modules/mongodb/lib/mongodb/connection/connection_pool.js:156:15)
+    at emit (events.js:98:17)
+    at Socket.<anonymous> (/var/www/html/TSP/node/node_modules/mongojs/node_modules/mongodb/lib/mongodb/connection/connection.js:534:10)
+    at Socket.emit (events.js:95:17)
+    at net.js:440:14
+    at process._tickCallback (node.js:419:13)
