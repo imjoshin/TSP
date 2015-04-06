@@ -1,3 +1,0 @@
-#!/bin/bash
-
-java -cp .:ejml-0.23.jar:stanford-corenlp-3.5.1.jar:stanford-corenlp-3.5.1-models.jar Mood "$1"

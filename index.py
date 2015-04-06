@@ -8,7 +8,7 @@ from tweepy import Stream
 import json
 import tweepy
 from urllib2 import Request, urlopen, URLError
-import maps
+
 
 # The Publisher passes the Request object to the function
 def index():

@@ -1,5 +1,6 @@
 var submit = document.getElementById('submit-button');
-
+var savedNames = [];
+var savedPoints = [];
 
 var g1 = ['rgba(255, 130, 130, 0)',
 'rgba(255, 120, 120, 1)',
@@ -128,22 +129,30 @@ function search(){
 	var index = 0;
 	var locations = [];
 	var split;
-	do {
-		var response = httpGet("http://moodar.me:8080", document.getElementById('inBox').value, index);
 
-		split = response.split("|");
-	      	locations = locations.concat(split.slice(1, split.length - 1));
-		index = locations.length;
-		console.log(index);
-	} while(split[0] == "false");
+	var curSearch = document.getElementById('inBox').value;
+	if(savedNames.indexOf(curSearch) != -1) {
+		locations = savedPoints[savedNames.indexOf(curSearch)];
+	} else {
+		do {
+			var response = httpGet("http://moodar.me:8080", document.getElementById('inBox').value, index);
+
+			split = response.split("|");
+		      	locations = locations.concat(split.slice(1, split.length - 1));
+			index = locations.length;
+			console.log(index);
+		} while(split[0] == "false");
+		if(locations.length > 5000) {
+			savedNames.push(curSearch);
+			savedPoints.push(locations);
+		}
+	}
 
        	var dataPoints1 = [];
         var dataPoints2 = [];
         var dataPoints3 = [];
         var dataPoints4 = [];
         var dataPoints5 = [];
-
-
 
       	for(var i = 1; i < locations.length-1;i++){
                	var intLoc = locations[i].split(",");
@@ -173,13 +182,13 @@ function search(){
         var pointArray4 = new google.maps.MVCArray(dataPoints4);
         var pointArray5 = new google.maps.MVCArray(dataPoints5);
 
-        heatmap3 = new google.maps.visualization.HeatmapLayer({data: pointArray3, map:map, gradient : g3, opacity: .4, radius : 10});
+        heatmap3 = new google.maps.visualization.HeatmapLayer({data: pointArray3, map:map, gradient : g3, opacity: .5, radius : 10});
 
-        heatmap1 = new google.maps.visualization.HeatmapLayer({data: pointArray1, map:map, gradient : g1, opacity: .4, radius : 10});
-        heatmap2 = new google.maps.visualization.HeatmapLayer({data: pointArray2, map:map, gradient : g2, opacity: .4, radius : 10});
+        heatmap1 = new google.maps.visualization.HeatmapLayer({data: pointArray1, map:map, gradient : g1, opacity: .5, radius : 10});
+        heatmap2 = new google.maps.visualization.HeatmapLayer({data: pointArray2, map:map, gradient : g2, opacity: .5, radius : 10});
 //        var heatmap3 = new google.maps.visualization.HeatmapLayer({data: pointArray3, map:map, gradient : g3, opacity: .3});
-        heatmap4 = new google.maps.visualization.HeatmapLayer({data: pointArray4, map:map, gradient : g4, opacity: .4, radius : 10});
-        heatmap5 = new google.maps.visualization.HeatmapLayer({data: pointArray5, map:map, gradient : g5, opacity: .4, radius : 10});
+        heatmap4 = new google.maps.visualization.HeatmapLayer({data: pointArray4, map:map, gradient : g4, opacity: .5, radius : 10});
+        heatmap5 = new google.maps.visualization.HeatmapLayer({data: pointArray5, map:map, gradient : g5, opacity: .5, radius : 10});
 //	var heatmap1 = new google.maps.visualization.HeatmapLayer({data: pointArray1, map:map, gradient : g1, opacity: .4, radius : 10});
 //        var heatmap3 = new google.maps.visualization.HeatmapLayer({data: pointArray3, map:map, gradient : g3, opacity: .45, radius : 10});
 //        var heatmap5 = new google.maps.visualization.HeatmapLayer({data: pointArray5, map:map, gradient : g5, opacity: .4, radius : 10});
@@ -277,12 +286,12 @@ function toggleMoods(mood){
 
 	}
 	
-	var s = .9; //starting value
+	var s = 1; //starting value
 	var t = 12; //denominator for subtraction
-        heatmap1.set('opacity', s - numHeatmaps / t);
+        heatmap1.set('opacity', s - (numHeatmaps / t));
         heatmap2.set('opacity', s - numHeatmaps / t);
         heatmap3.set('opacity', s - numHeatmaps / t);
         heatmap4.set('opacity', s - numHeatmaps / t);
-        heatmap5.set('opacity', s - numHeatmaps / t);
+        heatmap5.set('opacity', s - (numHeatmaps / t));
 
 }
